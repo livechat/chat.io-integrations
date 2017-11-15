@@ -1,0 +1,28 @@
+{
+	"name": "integration",
+    "port": 9090,
+    
+	"env": "dev",
+    "log_path": "./log.log",
+    
+    "application": {
+        "client_id":   "",
+        "secret":      "",
+        "redirect_uri": ""
+    },
+
+	"services": {
+        "external": {
+            "agent_sso": {
+                "url": "https://accounts.labs.chat.io"
+            },
+            "customer_sso": {
+                "url": "https://accounts.labs.chat.io/customer"
+            },
+            "configuration_api": {
+                "url": "https://api.labs.chat.io/configuration"
+            }
+
+        }
+	}
+}
