@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"livechat/integration/config"
+	"livechat/integration/go/config"
 	"net/http"
 	"sync"
 	"time"

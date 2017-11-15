@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	"livechat/integration/config"
-	"livechat/integration/controllers"
-	"livechat/integration/licenses"
+	"livechat/integration/go/config"
+	"livechat/integration/go/controllers"
+	"livechat/integration/go/licenses"
 	"net/http"
 
 	"github.com/gorilla/mux"
@@ -20,6 +20,7 @@ func main() {
 	webhookController := controllers.NewWebhookController()
 
 	router.HandleFunc("/", authController.Auth)
+	router.HandleFunc("/webhook", webhookController.Handle)
 
 	fmt.Println(fmt.Sprintf(":%d", cfg.Port))
 	http.ListenAndServe(fmt.Sprintf(":%d", cfg.Port), router)
