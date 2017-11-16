@@ -8,18 +8,22 @@ import multiprocessing
 import string
 import random
 
-# Integration data
-ACCOUNTS_TOKEN_URL = 'https://accounts.labs.chat.io/token'
-ACCOUNTS_INFO_URL = 'https://accounts.labs.chat.io/info'
-CONFIGURATION_API_URL = 'https://api.labs.chat.io/configuration/v0.3'
-AGENT_API_URL = 'https://api.labs.chat.io/agent/v0.3/action'
-CLIENT_ID = '53c7cc18997bf12de0c12bab2623d2dc'
-CLIENT_SECRET = '04b87cf1ab153ef38f17f363335e779d'
-REDIRECT_URI = 'http://localhost:5000/token'
+# Integration data from developers console
+CLIENT_ID = '<CLIENT_ID>'
+CLIENT_SECRET = '<CLIENT_SECRET>'
+REDIRECT_URI = '<REDIRECT_URI>'
 
-BOT_AGENT_NAME = 'Pizza BOT'
-BOT_AGENT_WEBHOOKS_URL = 'http://8a471b50.ngrok.io/webhook'
+# BOT Agent data
+BOT_AGENT_WEBHOOKS_URL = '<BOT_AGENT_WEBHOOKS_URL>'
 BOT_AGENT_WEBHOOKS_SECRET = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(10))
+BOT_AGENT_NAME = 'Pizza BOT'
+
+# API urls
+ACCOUNTS_TOKEN_URL = 'https://accounts.chat.io/token'
+ACCOUNTS_INFO_URL = 'https://accounts.chat.io/info'
+CONFIGURATION_API_URL = 'https://api.chat.io/configuration/v0.3'
+AGENT_API_URL = 'https://api.chat.io/agent/v0.3/action'
+
 
 class Bot:
     id = ''
