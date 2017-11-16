@@ -14,13 +14,16 @@
 	"services": {
         "external": {
             "agent_sso": {
-                "url": "https://accounts.labs.chat.io"
+                "url": "https://accounts.chat.io"
             },
             "customer_sso": {
-                "url": "https://accounts.labs.chat.io/customer"
+                "url": "https://accounts.chat.io/customer"
             },
             "configuration_api": {
-                "url": "https://api.labs.chat.io/configuration"
+                "url": "https://api.chat.io/configuration"
+            },
+            "customer_api": {
+                "url": "https://api.chat.io/customer"
             }
 
         }
