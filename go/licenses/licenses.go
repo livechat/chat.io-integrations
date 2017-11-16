@@ -6,15 +6,22 @@ import (
 	"errors"
 	"fmt"
 	"livechat/integration/go/config"
+	"livechat/integration/go/customers"
+	"log"
 	"net/http"
+	"net/url"
 	"sync"
 	"time"
+
+	chat_io "livechat/integration/go/chat.io"
 )
 
 type License struct {
 	ID           uint64
 	AccessToken  string
 	RefreshToken string
+
+	Customers *customers.Customers
 }
 
 type Licenses struct {
@@ -22,6 +29,14 @@ type Licenses struct {
 	config     *config.Configuration
 	mu         *sync.RWMutex
 	httpClient *http.Client
+}
+
+type StartChatRequest struct {
+	RoutingStatus *RoutingStatus `json:"routing_status"`
+}
+
+type RoutingStatus struct {
+	Type string `json:"type"`
 }
 
 func NewLicenses(config *config.Configuration) *Licenses {
@@ -40,8 +55,33 @@ func (l *Licenses) Setup(id uint64, token, refreshToken string) {
 		l.Add(id, token, refreshToken)
 	}
 
-	if err := l.registerWebhooksForLicense(id); err != nil {
-		fmt.Println("ERR", err)
+	// if err := l.registerWebhooksForLicense(id); err != nil {
+	// 	fmt.Println("ERR", err)
+	// }
+
+	license := l.License(id)
+
+	// create example customer
+	c := license.Customers.Create(id)
+	if c != nil {
+		log.Println("NEW CUSTOMER!", c.ID, c.AccessToken)
+
+		payload := &StartChatRequest{
+			RoutingStatus: &RoutingStatus{
+				Type: "license",
+			},
+		}
+
+		u := &url.URL{}
+		qs := u.Query()
+		qs.Add("license_id", fmt.Sprintf("%d", id))
+		u.RawQuery = qs.Encode()
+
+		// start sample chat
+		err := chat_io.CustomerAPI().REST().Send(l.config.Services.External.CustomerAPI.URL, "0.3", "start_chat", c.AccessToken, u, payload)
+		if err != nil {
+			log.Print(err)
+		}
 	}
 }
 
@@ -53,6 +93,7 @@ func (l *Licenses) Add(id uint64, token, refreshToken string) {
 		ID:           id,
 		AccessToken:  token,
 		RefreshToken: refreshToken,
+		Customers:    customers.NewCustomers(l.config, token),
 	}
 }
 

@@ -5,6 +5,9 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+
+	chat_io "livechat/integration/go/chat.io"
+	chat_io_capi "livechat/integration/go/chat.io/customer-api"
 )
 
 type WebhookController struct{}
@@ -44,5 +47,33 @@ func (w *WebhookController) Handle(rw http.ResponseWriter, req *http.Request) {
 }
 
 func (w *WebhookController) handleIncomingEvent(body json.RawMessage) {
-	fmt.Println(string(body))
+
+	// parse protocol message
+	msg := chat_io.CustomerAPI().ProtocolMessages().IncomingEvent(body)
+	if msg == nil {
+		return
+	}
+
+	// parse event
+	event, err := chat_io.CustomerAPI().Events().Unmarshal(msg.RawEvent)
+	fmt.Println(event, string(msg.RawEvent), err)
+	if err != nil {
+		return
+	}
+
+	switch chat_io.CustomerAPI().Events().Type(event) {
+	case "message":
+		message := event.(*chat_io_capi.EventMessage)
+		w.handleAction(message.Text)
+	default:
+		// unsupported type
+		return
+	}
+}
+
+func (w *WebhookController) handleAction(action string) {
+	switch action {
+	case "hello":
+		fmt.Println("Hello there!")
+	}
 }

@@ -29,6 +29,9 @@ type (
 				ConfigurationAPI struct {
 					URL string `json:"url"`
 				} `json:"configuration_api"`
+				CustomerAPI struct {
+					URL string `json:"url"`
+				} `json:"customer_api"`
 			} `json:"external"`
 		} `json:"services"`
 	}
