@@ -32,10 +32,18 @@ type Licenses struct {
 }
 
 type StartChatRequest struct {
-	RoutingStatus *RoutingStatus `json:"routing_status"`
+	RoutingScope *RoutingScope `json:"routing_scope"`
+	Chat         *Chat         `json:"chat,omitemplty"`
 }
 
-type RoutingStatus struct {
+type Chat struct {
+	Thread *Thread `json:"thread"`
+}
+type Thread struct {
+	Events []json.RawMessage `json:"events"`
+}
+
+type RoutingScope struct {
 	Type string `json:"type"`
 }
 
@@ -67,8 +75,15 @@ func (l *Licenses) Setup(id uint64, token, refreshToken string) {
 		log.Println("NEW CUSTOMER!", c.ID, c.AccessToken)
 
 		payload := &StartChatRequest{
-			RoutingStatus: &RoutingStatus{
+			RoutingScope: &RoutingScope{
 				Type: "license",
+			},
+			Chat: &Chat{
+				Thread: &Thread{
+					Events: []json.RawMessage{
+						json.RawMessage([]byte(`{"type":"message", "text": "Hello from Customer API integration!"}`)),
+					},
+				},
 			},
 		}
 
