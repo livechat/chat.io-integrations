@@ -23,7 +23,7 @@ It's quite simple :) Just follow the steps below to run the integration on your 
 
 * Download the [integration script](./pizzabot.py)
 
-* Create your own application in [developers console](https://console.chat.io/apps). Remember that you have to be logged in with the same account that you created a chat.io product license with (https://chat.io) to make your private server-side integration.
+* Create your own `Server-side app` in [developers console](https://console.chat.io/apps) and name it eg `PizzaBot`. Remember that you have to be logged in with the same account that you created a chat.io product license with (https://chat.io) to make your private server-side integration.
 
 * Set redirect URI to point the address where the integration script will listen on (eg `http://localhost:5000/token`)
 
@@ -31,7 +31,7 @@ It's quite simple :) Just follow the steps below to run the integration on your 
   * `<CLIENT_ID>` - Client ID of newly created application in developers console
   * `<CLIENT_SECRET>` - Client Secret of newly created application in developers console
   * `<REDIRECT_URI>` - Redirect URI of newly created application in developers console (eg `http://localhost:5000/token`)
-  * `<BOT_AGENT_WEBHOOKS_URL>` - URL for incoming webhooks with chat events. If you do not have possibility to expose your integration script to the internet (no external IP address) you can use eg [ngrok](https://dashboard.ngrok.com/user/signup) to forward all the webhooks to your local machine, the `<BOT_AGENT_WEBHOOKS_URL>` parameter would look like this `http://8a471b50.ngrok.io/webhook` then.
+  * `<BOT_AGENT_WEBHOOKS_URL>` - URL for incoming webhooks with chat events. If you do not have possibility to expose your integration script to the internet (no external IP address) you can use eg [ngrok](https://dashboard.ngrok.com/user/signup) to forward all the webhooks to your local machine, the `<BOT_AGENT_WEBHOOKS_URL>` parameter would look eg like this `http://8a471b50.ngrok.io/webhook` then.
 
 * Now you can run your script by running the following command: `./pizzabot.py 5000` to bind it on `localhost:5000`
 
