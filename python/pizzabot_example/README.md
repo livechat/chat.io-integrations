@@ -4,7 +4,7 @@ This is a simple example of chat.io integration in python2 that creates a BOT Ag
 
 ## What does it exactly do?
 
-* First of all the integration must handle the installation process on a license. To do it it binds to local port to parse `HTTP GET` request that is a result of agent-sso redirect to receive a `OAuth code` and exchange it to `access_token` of an agent (see https://www.chat.io/docs/authorization/#public-server-side-apps).
+* First of all the integration must handle the installation process on a license. To do it it binds to local port to parse `HTTP GET` request that is a result of agent-sso redirect to receive a `OAuth code` and exchange it to `access_token` of an agent (see https://www.chat.io/docs/authorization/#server-side-apps).
 
 * After getting the `access_token` it gets `access_token` iformation from agent SSO (`license` number in this case only).
 
