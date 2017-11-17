@@ -63,7 +63,7 @@ class Bot:
         print "Creating BOT Agent for license {0}".format(self.license)
         response_data = self.sendConfigurationAPIRequest('/agents/create_bot_agent', {
                         'name': BOT_AGENT_NAME,
-                        'status': 'offline',
+                        'status': 'not accepting chats',
                         'webhooks': {
                             'url': BOT_AGENT_WEBHOOKS_URL,
                             'secret_key': BOT_AGENT_WEBHOOKS_SECRET,
@@ -85,19 +85,6 @@ class Bot:
         
         return bot_agent_id
     
-    def setBotAgentStatus(self, status):
-        print "Setting BOT Agent status to {0}".format(status)
-        response_data = self.sendConfigurationAPIRequest('/agents/update_bot_agent', {
-                        'id': self.id,
-                        'status': status
-                    })
-
-        if response_data == '':
-            print "Cannot set BOT Agent status.".format(self.id)
-            return False
-        
-        return True
-
     def __init__(self, license, access_token):
         self.license = license
         self.access_token = access_token
@@ -106,7 +93,6 @@ class Bot:
         
         if self.id != '':
             self.initialized = True
-            self.setBotAgentStatus('not accepting chats')
             
 
     # BOT actions
