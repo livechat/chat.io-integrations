@@ -6,4 +6,4 @@
 
 ## Go programming language
 
-* [Example Customer BOT](./go)
+* [Example Customer API Chat](./go/customer_api_chat_example)

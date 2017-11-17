@@ -6,7 +6,7 @@ import (
 	"errors"
 	"fmt"
 	"io/ioutil"
-	"livechat/integration/go/config"
+	"livechat/integration/go/customer_api_chat_example/config"
 	"log"
 	"net/http"
 	"net/url"

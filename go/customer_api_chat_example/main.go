@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	"livechat/integration/go/config"
-	"livechat/integration/go/controllers"
-	"livechat/integration/go/licenses"
+	"livechat/integration/go/customer_api_chat_example/config"
+	"livechat/integration/go/customer_api_chat_example/controllers"
+	"livechat/integration/go/customer_api_chat_example/licenses"
 	"net/http"
 
 	"github.com/gorilla/mux"

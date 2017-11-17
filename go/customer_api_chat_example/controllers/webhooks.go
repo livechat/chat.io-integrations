@@ -6,8 +6,8 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	chat_io "livechat/integration/go/chat.io"
-	chat_io_capi "livechat/integration/go/chat.io/customer-api"
+	chat_io "livechat/integration/go/customer_api_chat_example/chat.io"
+	chat_io_capi "livechat/integration/go/customer_api_chat_example/chat.io/customer-api"
 )
 
 type WebhookController struct{}

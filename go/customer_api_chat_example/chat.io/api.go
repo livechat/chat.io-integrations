@@ -1,6 +1,6 @@
 package chat_io
 
-import chat_io_capi "livechat/integration/go/chat.io/customer-api"
+import chat_io_capi "livechat/integration/go/customer_api_chat_example/chat.io/customer-api"
 
 var (
 	capi = &customerAPI{

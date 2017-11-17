@@ -5,15 +5,15 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"livechat/integration/go/config"
-	"livechat/integration/go/customers"
+	"livechat/integration/go/customer_api_chat_example/config"
+	"livechat/integration/go/customer_api_chat_example/customers"
 	"log"
 	"net/http"
 	"net/url"
 	"sync"
 	"time"
 
-	chat_io "livechat/integration/go/chat.io"
+	chat_io "livechat/integration/go/customer_api_chat_example/chat.io"
 )
 
 type License struct {
@@ -138,7 +138,7 @@ func (l *Licenses) registerWebhooksForLicense(id uint64) error {
 		return err
 	}
 
-	req, err := http.NewRequest("POST", l.config.Services.External.ConfigurationAPI.URL+"/v0.2/webhooks/register_webhook", bytes.NewBuffer(raw))
+	req, err := http.NewRequest("POST", l.config.Services.External.ConfigurationAPI.URL+"/v0.3/webhooks/register_webhook", bytes.NewBuffer(raw))
 	if err != nil {
 		return err
 	}
