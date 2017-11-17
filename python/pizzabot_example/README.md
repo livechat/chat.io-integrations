@@ -23,7 +23,7 @@ It's quite simple :) Just follow the steps below to run the integration on your 
 
 * Download the [integration script](./pizzabot.py)
 
-* Create your own application in [developers console](https://console.chat.io). Remember that you have to be logged in with the same account that you created a chat.io product license with (https://chat.io) to make your private server-side integration.
+* Create your own application in [developers console](https://console.chat.io/apps). Remember that you have to be logged in with the same account that you created a chat.io product license with (https://chat.io) to make your private server-side integration.
 
 * Set redirect URI to point the address where the integration script will listen on (eg `http://localhost:5000/token`)
 
