@@ -9,13 +9,13 @@ This is a simple example of chat.io integration in python2 that creates a BOT Ag
 * After getting the `access_token` it gets `access_token` iformation from agent SSO (`license` number in this case only).
 
 * Once successfully obtaining `access_token` and `license` number it configures the necessary resources in the license:
-  * it creates BOT Agent via [configuration-api](https://chat.io/docs) that is used to receive webhooks with chat events and send messages to chats
+  * it creates BOT Agent via [configuration-api](https://www.chat.io/docs/configuration-api/api-reference/v0.3/#bot-agent) that is used to receive webhooks with chat events and send messages to chats
   * while creating it initializes BOT Agent status with `not accepting chat` value to make it online but not visible to [chat router](https://www.chat.io/docs/apis-overview/#automatic-routing)
 
 * It listens on incoming webhooks being sent via `HTTP POST`. In this case it listens on `incoming_chat_thread` and `incoming_event` webhooks only. It uses [agent-api](https://www.chat.io/docs/agent-api/) to react on incoming messages with `pizza` word with:
-  * joining the chat with `pizza` message ([API method](https://www.chat.io/docs/agent-api/api-reference/v0.3-dev-preview/#join-chat))
-  * sending `Pizza is on the way!` to all agents in the chat ([API method](https://www.chat.io/docs/agent-api/api-reference/v0.3-dev-preview/#send-event))
-  * leaving the chat ([API method](https://www.chat.io/docs/agent-api/api-reference/v0.3-dev-preview/#remove-from-chat))
+  * joining the chat with `pizza` message ([API method](https://www.chat.io/docs/agent-api/api-reference/v0.3/#join-chat))
+  * sending `Pizza is on the way!` to all agents in the chat ([API method](https://www.chat.io/docs/agent-api/api-reference/v0.3/#send-event))
+  * leaving the chat ([API method](https://www.chat.io/docs/agent-api/api-reference/v0.3/#remove-from-chat))
 
 ## I want to create this integration on my own
 
