@@ -1,6 +1,6 @@
 # Chat.io example pizza BOT integration
 
-This is a simple example of chat.io integration that creates a BOT Agent that listens to all the messages through all the chats and reacts on `pizza` word. When anyone writes a `pizza` word the BOT joins the channel, says `Pizza is on the way!` to agents only and leaves the channel.
+This is a simple example of chat.io integration in python2 that creates a BOT Agent that listens to all the messages through all the chats and reacts on `pizza` word. When anyone writes a `pizza` word the BOT joins the channel, says `Pizza is on the way!` to agents only and leaves the channel.
 
 ## What does it exactly do?
 
@@ -10,7 +10,7 @@ This is a simple example of chat.io integration that creates a BOT Agent that li
 
 * Once successfully obtaining `access_token` and `license` number it configures the necessary resources in the license:
   * it creates BOT Agent via [configuration-api](https://chat.io/docs) that is used to receive webhooks with chat events and send messages to chats
-  * it sets BOT Agent status to `not accepting chat` to make it online but not visible to [chat router](https://www.chat.io/docs/apis-overview/#automatic-routing)
+  * while creating it initializes BOT Agent status with `not accepting chat` value to make it online but not visible to [chat router](https://www.chat.io/docs/apis-overview/#automatic-routing)
 
 * It listens on incoming webhooks being sent via `HTTP POST`. In this case it listens on `incoming_chat_thread` and `incoming_event` webhooks only. It uses [agent-api](https://www.chat.io/docs/agent-api/) to react on incoming messages with `pizza` word with:
   * joining the chat with `pizza` message ([API method](https://www.chat.io/docs/agent-api/api-reference/v0.3-dev-preview/#join-chat))
