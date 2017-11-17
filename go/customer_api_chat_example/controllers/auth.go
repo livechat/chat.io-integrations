@@ -49,7 +49,7 @@ func (a *AuthController) Auth(rw http.ResponseWriter, req *http.Request) {
 	// 1. Exchange code for token
 	tk, err := a.exchangeCodeForToken(code)
 	if err != nil {
-		fmt.Println(tk, err)
+		fmt.Println("1", tk, err)
 		rw.WriteHeader(500)
 		return
 	}
@@ -57,7 +57,7 @@ func (a *AuthController) Auth(rw http.ResponseWriter, req *http.Request) {
 	// 2. Get Token info
 	token, err := a.getTokenInfo(fmt.Sprintf("%s %s", tk.TokenType, tk.AccessToken))
 	if err != nil {
-		fmt.Println(token, err)
+		fmt.Println("2", token, err)
 		rw.WriteHeader(500)
 		return
 	}

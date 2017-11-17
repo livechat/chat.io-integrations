@@ -74,14 +74,18 @@ func (l *Licenses) Setup(id uint64, token, refreshToken string) {
 	if c != nil {
 		log.Println("NEW CUSTOMER!", c.ID, c.AccessToken)
 
-		payload := &StartChatRequest{
-			RoutingScope: &RoutingScope{
-				Type: "license",
-			},
-			Chat: &Chat{
-				Thread: &Thread{
-					Events: []json.RawMessage{
-						json.RawMessage([]byte(`{"type":"message", "text": "Hello from Customer API integration!"}`)),
+		payload := struct {
+			Payload interface{} `json:"payload"`
+		}{
+			Payload: &StartChatRequest{
+				RoutingScope: &RoutingScope{
+					Type: "license",
+				},
+				Chat: &Chat{
+					Thread: &Thread{
+						Events: []json.RawMessage{
+							json.RawMessage([]byte(`{"type":"message", "text": "Hello from Customer API integration!"}`)),
+						},
 					},
 				},
 			},
@@ -91,6 +95,9 @@ func (l *Licenses) Setup(id uint64, token, refreshToken string) {
 		qs := u.Query()
 		qs.Add("license_id", fmt.Sprintf("%d", id))
 		u.RawQuery = qs.Encode()
+
+		raw, _ := json.Marshal(payload)
+		fmt.Println(c.AccessToken, string(raw))
 
 		// start sample chat
 		err := chat_io.CustomerAPI().REST().Send(l.config.Services.External.CustomerAPI.URL, "0.3", "start_chat", c.AccessToken, u, payload)
