@@ -10,4 +10,8 @@ This is a simple example of chat.io integration that creates a customer (by usin
 
 * Once successfully obtaining `access_token` and `license` number, it sets up the necessary resources in the license and creates Customer.
 
-* Customer is created by Customer Accounts service. To obtain a new customer it does `HTTP POST` request to `https://accounts.chat.io/customer/` using (link to customer-sso)
+* Customer is created by Customer Accounts service. To obtain a new `customer_id`, `customer_key` and `code` it does `HTTP POST` request to `https://accounts.chat.io/customer/` using a `POST https://accounts.chat.io/customer/` request. (link to customer-sso) 
+
+* Obtained code is exchanged for customer `access_token`. `customer_key` and `customer_id` should is saved for futher use.
+
+* Using customer `access_token`, integration use Customer API to send `POST https://api.chat.io/customer/v0.3/action/start_chat?license=<license_id>` action with `start_chat` payload. (https://www.chat.io/docs/customer-api/api-reference/v0.3/#start-chat) 
