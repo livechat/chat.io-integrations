@@ -7,6 +7,7 @@ import json
 import multiprocessing
 import string
 import random
+import urllib
 
 # Integration data from developers console
 CLIENT_ID = '<CLIENT_ID>'
@@ -21,8 +22,8 @@ BOT_AGENT_NAME = 'Pizza BOT'
 # API urls
 ACCOUNTS_TOKEN_URL = 'https://accounts.chat.io/token'
 ACCOUNTS_INFO_URL = 'https://accounts.chat.io/info'
-CONFIGURATION_API_URL = 'https://api.chat.io/configuration/v0.3'
-AGENT_API_URL = 'https://api.chat.io/agent/v0.3/action'
+CONFIGURATION_API_URL = 'https://api.chat.io/configuration/v0.4'
+AGENT_API_URL = 'https://api.chat.io/agent/v0.4/action'
 
 
 class Bot:
@@ -232,7 +233,7 @@ class S(BaseHTTPRequestHandler):
         if self.path.startswith('/token'):
             result = re.search('code=([^&]+)', self.path)
             if result != None:
-                self.exchangeCodeForAccessToken(result.group(1))
+                self.exchangeCodeForAccessToken(urllib.unquote(result.group(1)).decode('utf8'))
                 return
         
         self.sendOK()
